@@ -140,9 +140,9 @@ export async function dbPush(args: string[]) {
 }
 
 /**
- * Open Drizzle Studio for an app
+ * Open Drizzle Minato for an app
  */
-export async function dbStudio(args: string[]) {
+export async function dbMinato(args: string[]) {
   const appName = parseAppArg(args)
 
   if (!appName) {
@@ -166,10 +166,10 @@ export async function dbStudio(args: string[]) {
     process.exit(1)
   }
 
-  console.log(`🔍 Opening Drizzle Studio for ${appName}...`)
+  console.log(`🔍 Opening Drizzle Minato for ${appName}...`)
   const env = loadEnvFile(envPath)
 
-  await run(['bunx', 'drizzle-kit', 'studio'], {
+  await run(['bunx', 'drizzle-kit', 'minato'], {
     cwd: repoDir,
     env: { ...process.env, ...env },
   })

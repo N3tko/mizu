@@ -38,9 +38,9 @@ A platform where developers can deploy and manage applications through drag-and-
 
 ```bash
 # Development
-bun run repo dev --app studio         # Start dev server (localhost:3000)
-bun run repo build --app studio       # Build for production
-bun run repo serve --app studio       # Serve built app
+bun run repo dev --app minato         # Start dev server (localhost:3000)
+bun run repo build --app minato       # Build for production
+bun run repo serve --app minato       # Serve built app
 
 # Verification (run before marking work complete)
 bun run check-types                   # Type check all packages
@@ -49,14 +49,14 @@ bun run test                          # Run tests (Vitest)
 bun run repo test:e2e                 # Run E2E tests
 
 # Database (Drizzle)
-bun run repo db:generate --app studio # Generate migrations
-bun run repo db:migrate --app studio  # Run migrations
-bun run repo db:push --app studio     # Push schema to DB
-bun run repo db:seed --app studio     # Seed database
+bun run repo db:generate --app minato # Generate migrations
+bun run repo db:migrate --app minato  # Run migrations
+bun run repo db:push --app minato     # Push schema to DB
+bun run repo db:seed --app minato     # Seed database
 
 # Docker
-bun run repo docker:up --app studio   # Start services
-bun run repo docker:down --app studio # Stop services
+bun run repo docker:up --app minato   # Start services
+bun run repo docker:down --app minato # Stop services
 
 # Code Generation
 bun run gen:app                       # Generate new TanStack app
@@ -72,9 +72,9 @@ bun run gen:lib                       # Generate new library package
 ### Package Structure
 
 ```
-apps/studio/                      # Mizu Studio - main web interface (TanStack Start)
+apps/minato/                      # Mizu Minato - main web interface (TanStack Start)
 packages/
-  studio/
+  minato/
     domain/                       # Drizzle schemas + drizzle-zod entities
     repository/                   # Database layer (Drizzle ORM + PostgreSQL)
     service/                      # Business logic (queries/mutations)
@@ -83,7 +83,7 @@ packages/
     cli/                          # Monorepo CLI tool (bun run repo ...)
     logger/                       # Pino-based logger
     typescript-config/            # Shared TSConfig
-  configs/studio-config/          # Environment configuration
+  configs/minato-config/          # Environment configuration
 ```
 
 ### Data Flow

@@ -18,7 +18,7 @@ Or use the convenience scripts in the root package.json:
 bun run dev          # Start full dev environment
 bun run serve        # Start dev server only
 bun run build        # Production build
-bun run db:studio    # Open Drizzle Studio
+bun run db:minato    # Open Drizzle Minato
 bun run status       # Show monorepo status
 ```
 
@@ -47,7 +47,7 @@ bun run status       # Show monorepo status
 | `db:generate --app <name>` | Generate migrations from schema |
 | `db:push --app <name>` | Push schema changes (no migration) |
 | `db:seed --app <name>` | Seed database with initial data |
-| `db:studio --app <name>` | Open Drizzle Studio GUI |
+| `db:minato --app <name>` | Open Drizzle Minato GUI |
 
 ### Generators
 
@@ -86,20 +86,20 @@ bun run status       # Show monorepo status
 ## Examples
 
 ```bash
-# Start development for studio app
-bun run repo dev --app studio
+# Start development for minato app
+bun run repo dev --app minato
 
 # Open database GUI
-bun run repo db:studio --app studio
+bun run repo db:minato --app minato
 
 # Run tests with coverage
 bun run repo test --coverage
 
 # Follow Docker logs
-bun run repo logs --app studio -f
+bun run repo logs --app minato -f
 
 # Reset app to fresh state
-bun run repo reset --app studio
+bun run repo reset --app minato
 
 # Create a new app
 bun run repo generate:app

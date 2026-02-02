@@ -24,7 +24,7 @@ Database
   db:generate --app <name>   Generate migrations from schema
   db:push --app <name>       Push schema changes (no migration)
   db:seed --app <name>       Seed database with initial data
-  db:studio --app <name>     Open Drizzle Studio GUI
+  db:minato --app <name>     Open Drizzle Minato GUI
 
 Generators
   generate:app               Create a new app
@@ -56,10 +56,10 @@ Options
   --help, -h                 Show this help message
 
 Examples
-  bun run repo dev --app studio
-  bun run repo db:studio --app studio
+  bun run repo dev --app minato
+  bun run repo db:minato --app minato
   bun run repo test --coverage
-  bun run repo logs --app studio -f
-  bun run repo reset --app studio
+  bun run repo logs --app minato -f
+  bun run repo reset --app minato
 `)
 }

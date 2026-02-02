@@ -15,18 +15,18 @@
         "typescript": "5.9.2",
       },
     },
-    "apps/studio": {
-      "name": "studio-app",
+    "apps/minato": {
+      "name": "minato-app",
       "dependencies": {
         "@base-ui/react": "^1.1.0",
         "@fontsource-variable/nunito-sans": "^5.2.7",
         "@mizu/cli": "workspace:*",
         "@mizu/logger": "workspace:*",
-        "@mizu/studio-config": "workspace:*",
-        "@mizu/studio-domain": "workspace:*",
-        "@mizu/studio-repository": "workspace:*",
-        "@mizu/studio-service": "workspace:*",
-        "@mizu/studio-trpc": "workspace:*",
+        "@mizu/minato-config": "workspace:*",
+        "@mizu/minato-domain": "workspace:*",
+        "@mizu/minato-repository": "workspace:*",
+        "@mizu/minato-service": "workspace:*",
+        "@mizu/minato-trpc": "workspace:*",
         "@tabler/icons-react": "^3.36.1",
         "@tailwindcss/vite": "^4.0.6",
         "@tanstack/react-devtools": "^0.7.0",
@@ -79,12 +79,68 @@
         "web-vitals": "^5.1.0",
       },
     },
-    "packages/configs/studio-config": {
-      "name": "@mizu/studio-config",
+    "packages/configs/minato-config": {
+      "name": "@mizu/minato-config",
       "version": "0.1.0",
       "dependencies": {
-        "@mizu/studio-domain": "workspace:*",
+        "@mizu/minato-domain": "workspace:*",
         "@mizu/typescript-config": "workspace:*",
+      },
+    },
+    "packages/minato/domain": {
+      "name": "@mizu/minato-domain",
+      "dependencies": {
+        "@mizu/typescript-config": "workspace:*",
+        "drizzle-orm": "^0.44.6",
+        "drizzle-zod": "^0.8.3",
+        "zod": "^4.1.13",
+      },
+      "devDependencies": {
+        "@types/bun": "^1.3.4",
+      },
+    },
+    "packages/minato/repository": {
+      "name": "@mizu/minato-repository",
+      "dependencies": {
+        "@mizu/minato-config": "workspace:*",
+        "@mizu/minato-domain": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
+        "drizzle-orm": "^0.44.6",
+        "postgres": "^3.4.7",
+        "zod": "^4.1.11",
+      },
+      "devDependencies": {
+        "@types/bun": "^1.3.4",
+        "drizzle-kit": "^0.31.5",
+      },
+    },
+    "packages/minato/service": {
+      "name": "@mizu/minato-service",
+      "dependencies": {
+        "@mizu/logger": "workspace:*",
+        "@mizu/minato-config": "workspace:*",
+        "@mizu/minato-domain": "workspace:*",
+        "@mizu/minato-repository": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
+        "@openrouter/ai-sdk-provider": "^1.4.1",
+        "ai": "^5.0.0-canary.14",
+        "better-auth": "^1.4.5",
+        "drizzle-orm": "^0.44.6",
+        "jose": "^6.0.11",
+      },
+    },
+    "packages/minato/trpc": {
+      "name": "@mizu/minato-trpc",
+      "dependencies": {
+        "@mizu/logger": "workspace:*",
+        "@mizu/minato-config": "workspace:*",
+        "@mizu/minato-domain": "workspace:*",
+        "@mizu/minato-repository": "workspace:*",
+        "@mizu/minato-service": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
+        "@trpc/server": "^11.1.2",
+        "superjson": "^2.2.2",
+        "zod": "^3.25.16",
       },
     },
     "packages/shared/cli": {
@@ -117,62 +173,6 @@
     "packages/shared/typescript-config": {
       "name": "@mizu/typescript-config",
       "version": "0.0.0",
-    },
-    "packages/studio/domain": {
-      "name": "@mizu/studio-domain",
-      "dependencies": {
-        "@mizu/typescript-config": "workspace:*",
-        "drizzle-orm": "^0.44.6",
-        "drizzle-zod": "^0.8.3",
-        "zod": "^4.1.13",
-      },
-      "devDependencies": {
-        "@types/bun": "^1.3.4",
-      },
-    },
-    "packages/studio/repository": {
-      "name": "@mizu/studio-repository",
-      "dependencies": {
-        "@mizu/studio-config": "workspace:*",
-        "@mizu/studio-domain": "workspace:*",
-        "@mizu/typescript-config": "workspace:*",
-        "drizzle-orm": "^0.44.6",
-        "postgres": "^3.4.7",
-        "zod": "^4.1.11",
-      },
-      "devDependencies": {
-        "@types/bun": "^1.3.4",
-        "drizzle-kit": "^0.31.5",
-      },
-    },
-    "packages/studio/service": {
-      "name": "@mizu/studio-service",
-      "dependencies": {
-        "@mizu/logger": "workspace:*",
-        "@mizu/studio-config": "workspace:*",
-        "@mizu/studio-domain": "workspace:*",
-        "@mizu/studio-repository": "workspace:*",
-        "@mizu/typescript-config": "workspace:*",
-        "@openrouter/ai-sdk-provider": "^1.4.1",
-        "ai": "^5.0.0-canary.14",
-        "better-auth": "^1.4.5",
-        "drizzle-orm": "^0.44.6",
-        "jose": "^6.0.11",
-      },
-    },
-    "packages/studio/trpc": {
-      "name": "@mizu/studio-trpc",
-      "dependencies": {
-        "@mizu/logger": "workspace:*",
-        "@mizu/studio-config": "workspace:*",
-        "@mizu/studio-domain": "workspace:*",
-        "@mizu/studio-repository": "workspace:*",
-        "@mizu/studio-service": "workspace:*",
-        "@mizu/typescript-config": "workspace:*",
-        "@trpc/server": "^11.1.2",
-        "superjson": "^2.2.2",
-        "zod": "^3.25.16",
-      },
     },
   },
   "packages": {
@@ -476,15 +476,15 @@
 
     "@mizu/logger": ["@mizu/logger@workspace:packages/shared/logger"],
 
-    "@mizu/studio-config": ["@mizu/studio-config@workspace:packages/configs/studio-config"],
+    "@mizu/minato-config": ["@mizu/minato-config@workspace:packages/configs/minato-config"],
 
-    "@mizu/studio-domain": ["@mizu/studio-domain@workspace:packages/studio/domain"],
+    "@mizu/minato-domain": ["@mizu/minato-domain@workspace:packages/minato/domain"],
 
-    "@mizu/studio-repository": ["@mizu/studio-repository@workspace:packages/studio/repository"],
+    "@mizu/minato-repository": ["@mizu/minato-repository@workspace:packages/minato/repository"],
 
-    "@mizu/studio-service": ["@mizu/studio-service@workspace:packages/studio/service"],
+    "@mizu/minato-service": ["@mizu/minato-service@workspace:packages/minato/service"],
 
-    "@mizu/studio-trpc": ["@mizu/studio-trpc@workspace:packages/studio/trpc"],
+    "@mizu/minato-trpc": ["@mizu/minato-trpc@workspace:packages/minato/trpc"],
 
     "@mizu/typescript-config": ["@mizu/typescript-config@workspace:packages/shared/typescript-config"],
 
@@ -1646,6 +1646,8 @@
 
     "mimic-function": ["mimic-function@5.0.1", "", {}, "sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA=="],
 
+    "minato-app": ["minato-app@workspace:apps/minato"],
+
     "minimatch": ["minimatch@9.0.0", "", { "dependencies": { "brace-expansion": "^2.0.1" } }, "sha512-0jJj8AvgKqWN05mrwuqi8QYKx1WmYSUoKSxu5Qhs9prezTz10sxAHGNZe9J9cqIJzta8DWsleh2KaVaLl6Ru2w=="],
 
     "minimist": ["minimist@1.2.8", "", {}, "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA=="],
@@ -2008,8 +2010,6 @@
 
     "strip-literal": ["strip-literal@3.1.0", "", { "dependencies": { "js-tokens": "^9.0.1" } }, "sha512-8r3mkIM/2+PpjHoOtiAW8Rg3jJLHaV7xPwG+YRGrv6FP0wwk/toTpATxWYOW0BKdWwl82VT2tFYi5DlROa0Mxg=="],
 
-    "studio-app": ["studio-app@workspace:apps/studio"],
-
     "superjson": ["superjson@2.2.6", "", { "dependencies": { "copy-anything": "^4" } }, "sha512-H+ue8Zo4vJmV2nRjpx86P35lzwDT3nItnIsocgumgr0hHMQ+ZGq5vrERg9kJBo5AWGmxZDhzDo+WVIJqkB0cGA=="],
 
     "supports-color": ["supports-color@7.2.0", "", { "dependencies": { "has-flag": "^4.0.0" } }, "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw=="],
@@ -2292,7 +2292,7 @@
 
     "@isaacs/cliui/wrap-ansi": ["wrap-ansi@8.1.0", "", { "dependencies": { "ansi-styles": "^6.1.0", "string-width": "^5.0.1", "strip-ansi": "^7.0.1" } }, "sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ=="],
 
-    "@mizu/studio-trpc/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
+    "@mizu/minato-trpc/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
 
     "@modelcontextprotocol/sdk/ajv": ["ajv@8.17.1", "", { "dependencies": { "fast-deep-equal": "^3.1.3", "fast-uri": "^3.0.1", "json-schema-traverse": "^1.0.0", "require-from-string": "^2.0.2" } }, "sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g=="],
 
