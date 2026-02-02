@@ -1,294 +1,156 @@
-# TanStack Solo Server Monorepo Template
+<p align="center">
+  <img src="assets/logo.png" alt="Mizu Logo" width="128" height="128" />
+</p>
 
-A modern, type-safe full-stack template using TanStack Start, tRPC, Drizzle ORM, TanStack Query, and Bun.
+<h1 align="center">水 Mizu</h1>
 
-## 🚀 Features
+<p align="center">
+  <strong>Self-hosting platform for macOS home labs.</strong>
+</p>
 
-- ⚡ **TanStack Start** - Modern React framework with SSR
-- 🔄 **tRPC** - End-to-end type-safe APIs
-- 📊 **TanStack Query** - Powerful data fetching and caching
-- 🗃️ **Drizzle ORM** - Type-safe database access with `drizzle-zod` for automatic schema generation
-- 📦 **Turborepo** - High-performance monorepo build system
-- 🎨 **Beautiful UI** - Pre-configured component library
-- 🔐 **Authentication** - Built-in auth system
-- ⚙️ **Bun Runtime** - Fast JavaScript runtime and package manager
-- 🔌 **Real-time Subscriptions** - Both SSE (HTTP) and WebSocket support
-- 🎯 **TypeScript** - Full type safety across the stack
+<p align="center">
+  <em>Deploy your apps like water flows — naturally, effortlessly.</em>
+</p>
 
-## 📦 What's Included
+---
 
-### Complete Todos Example
+> ⚠️ **Fair Warning**: This is a hobby project born from late-night coding sessions and too much coffee. Maintenance is not guaranteed—updates come when inspiration strikes, bugs get fixed when they annoy me enough, and features ship when they're ready. Use at your own risk, and maybe keep backups of your backups.
 
-This template includes a **fully implemented todos feature** demonstrating:
+---
 
-- ✅ **CRUD Operations** - Create, Read, Update, Delete
-- ✅ **Real-time Updates** - SSE and WebSocket subscriptions
-- ✅ **TanStack Query Integration** - `useQuery`, `useMutation` with tRPC
-- ✅ **drizzle-zod** - Automatic Zod schema generation from Drizzle tables
-- ✅ **Clean Architecture** - Layered design following Netko patterns
+## What is Mizu?
 
-## 🏗️ Project Structure
+Mizu (水, "water" in Japanese) is a self-hosting platform designed specifically for **macOS**. Think [Coolify](https://coolify.io), [Railway](https://railway.com), or the old-school Heroku vibes—but running on that Mac Mini collecting dust in your closet or the MacBook you retired from daily use.
+
+**The core idea**: Deploy and manage applications through a visual canvas interface. Drag, drop, connect, deploy. No YAML archaeology. No Kubernetes PhD required.
+
+### Why Another Self-Hosting Platform?
+
+Most self-hosting solutions assume you're running Linux on a VPS or a Raspberry Pi cluster. Mizu assumes you're a developer with spare Apple hardware who wants to:
+
+- **Run your side projects** without paying cloud bills
+- **Self-host services** (databases, APIs, personal tools) at home
+- **Learn deployment patterns** in a visual, interactive way
+- **Keep your data** on hardware you physically own
+
+### Why macOS?
+
+Because Mac Minis are silent, energy-efficient, and surprisingly capable servers. Because that 2019 MacBook Pro still has life in it. Because sometimes the best home lab is the hardware you already have.
+
+---
+
+## Philosophy
 
 ```
-.
-├── apps/
-│   └── web/                    # TanStack Start application
-│       └── src/
-│           ├── components/     # React components
-│           ├── integrations/   # TanStack Query + tRPC setup
-│           │   ├── tanstack-query/
-│           │   └── trpc/
-│           └── routes/         # File-based routing
-│
-├── packages/
-│   └── web/
-│       ├── domain/             # Domain layer
-│       │   ├── db/             # Drizzle schemas
-│       │   └── entities/       # drizzle-zod generated schemas
-│       ├── repository/         # Database layer
-│       ├── service/            # Business logic
-│       │   ├── queries/        # Query functions (folder per entity)
-│       │   └── mutations/      # Mutation functions (folder per entity)
-│       └── trpc/               # tRPC routers
-│           └── routers/
-│               └── todos/
-│                   ├── queries.ts
-│                   ├── mutations.ts
-│                   └── subscriptions.ts
+"The water that flows adapts to the container it fills."
 ```
 
-## 🚀 Quick Start
+Mizu aims to make deployment feel fluid:
 
-### Prerequisites
+- **Visual-first**: A canvas interface where your infrastructure is a flowchart, not a wall of config files
+- **Opinionated defaults**: Sensible configurations out of the box—escape hatches available when you need them
+- **Local-first**: Your machine, your data, your rules
+- **Progressive complexity**: Simple things stay simple; complex things remain possible
 
-- [Bun](https://bun.sh/) (v1.0+)
-- PostgreSQL database
+---
 
-### Installation
+## Planned Features
 
-```bash
-# Install dependencies
-bun install
+| Status | Feature | Description |
+|:------:|---------|-------------|
+| 🎯 | **Canvas Editor** | Visual flowchart interface for designing deployments |
+| 📋 | **Container Management** | Docker-based isolation with native macOS integration |
+| 📋 | **Git Integration** | Deploy from GitHub, GitLab, or local repositories |
+| 📋 | **One-Click Services** | Databases, caches, message queues with minimal setup |
+| 📋 | **Reverse Proxy** | Automatic SSL and routing via Caddy/Traefik |
+| 📋 | **Resource Monitoring** | CPU, memory, and network dashboards |
+| 📋 | **Backup System** | Scheduled backups to local storage or S3-compatible services |
+| 💭 | **Wake-on-LAN** | Power management for energy-conscious home labs |
+| 💭 | **Multi-machine** | Orchestrate deployments across multiple Macs |
 
-# Set up environment variables
-cp apps/web/sample.env apps/web/.env
-cp packages/web/domain/sample.env packages/web/domain/.env
+> 🎯 = In Progress | 📋 = Planned | 💭 = Maybe Someday
 
-# Edit .env files with your database URL and other settings
-```
+---
 
-### Database Setup
+## Tech Stack
 
-```bash
-# Generate and apply migrations
-cd packages/web/repository
-bunx drizzle-kit push
-```
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 19, TanStack Router, TanStack Query |
+| Backend | TanStack Start (SSR), tRPC, Drizzle ORM |
+| Database | PostgreSQL |
+| Runtime | Bun |
+| Build | Turborepo, Vite |
 
-### Development
+---
 
-```bash
-# Start development server
-bun run dev
+## Project Status
 
-# Server will start at http://localhost:3000
-# Visit http://localhost:3000/todos to see the example
-```
+🚧 **Early Development** — The foundation is being laid. Core architecture exists, but user-facing features are still taking shape.
 
-## 📖 Architecture Patterns
+Current focus:
+1. Solidifying the monorepo architecture
+2. Building the canvas/flowchart editor
+3. Crafting delightful UX (because life's too short for ugly interfaces)
 
-### Domain Layer (`packages/web/domain`)
+---
 
-**Database Schema** (`src/db/todos.ts`):
-```typescript
-export const todoTable = pgTable('todo', {
-  id: uuid('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
-  title: text('title').notNull(),
-  description: text('description'),
-  completed: boolean('completed').default(false).notNull(),
-  createdBy: text('created_by').notNull().references(() => user.id, { onDelete: 'cascade' }),
-  createdAt: timestamp('created_at').$defaultFn(() => new Date()).notNull(),
-  updatedAt: timestamp('updated_at').$defaultFn(() => new Date()).$onUpdate(() => new Date()).notNull(),
-})
-```
+## Inspirations
 
-**Entity Schemas** (`src/entities/todos.ts`) - Using `drizzle-zod`:
-```typescript
-import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod'
+Mizu stands on the shoulders of giants. These projects shaped the vision:
 
-export const TodoInsertSchema = createInsertSchema(todoTable)
-export type TodoInsert = z.infer<typeof TodoInsertSchema>
+| Project | What We Learned |
+|---------|-----------------|
+| [Coolify](https://coolify.io) | Self-hosting can be beautiful and accessible |
+| [Railway](https://railway.com) | Canvas-based infrastructure visualization works |
+| [Heroku](https://heroku.com) | Developer experience matters more than features |
+| [Dokku](https://dokku.com) | The power of git-push deployments |
+| [CapRover](https://caprover.com) | One-click apps lower the barrier to entry |
+| [Portainer](https://portainer.io) | Good container UX is achievable |
 
-export const TodoUpdateSchema = createUpdateSchema(todoTable).required({ id: true })
-export type TodoUpdate = z.infer<typeof TodoUpdateSchema>
+If you haven't tried these, you should. They're all excellent.
 
-export const TodoSchema = createSelectSchema(todoTable)
-export type Todo = z.infer<typeof TodoSchema>
-```
+---
 
-### Service Layer (`packages/web/service`)
+## What Mizu Is Not
 
-**Queries** (`src/queries/todos/get-todo.ts`):
-```typescript
-export const getTodo = async (
-  todoId: string,
-  ctx?: AuthenticatedContext,
-): Promise<Todo | undefined> => {
-  const where = ctx
-    ? and(eq(todoTable.id, todoId), eq(todoTable.createdBy, ctx.user.id))
-    : eq(todoTable.id, todoId)
+Let's set expectations:
 
-  return await db.select().from(todoTable).where(where).then(([result]) => result)
-}
-```
+- **Not production-grade** — This is for home labs and side projects, not your startup's infrastructure
+- **Not multi-cloud** — It runs on your Mac, that's it
+- **Not a Kubernetes replacement** — If you need K8s, you probably don't need Mizu
+- **Not guaranteed to work** — See the warning at the top
 
-**Mutations** (`src/mutations/todos/create-todo.ts`):
-```typescript
-export const createTodo = async (data: TodoInsert): Promise<Todo | undefined> => {
-  return await db.insert(todoTable).values(data).returning().then(([result]) => result)
-}
-```
+---
 
-### tRPC Layer (`packages/web/trpc`)
+## Contributing
 
-**Queries** (`src/routers/todos/queries.ts`):
-```typescript
-export const todosQueries = router({
-  list: protectedProcedure.query(async ({ ctx }) => {
-    return getTodos(ctx.user.id)
-  }),
+This is a personal project, but if you're interested in self-hosting on macOS and want to help shape Mizu, feel free to open issues or PRs. Just know that responses may be slow—this is built in the margins of life.
 
-  getById: protectedProcedure
-    .input(z.object({ todoId: z.string() }))
-    .query(async ({ ctx, input }) => {
-      return getTodo(input.todoId, ctx)
-    }),
-})
-```
+**Areas where help would be appreciated:**
+- macOS system integration (launchd, network configuration)
+- Container runtime expertise
+- UI/UX design feedback
+- Documentation
 
-**Mutations** (`src/routers/todos/mutations.ts`):
-```typescript
-export const todosMutations = router({
-  create: protectedProcedure
-    .input(TodoInsertSchema.omit({ createdBy: true }))
-    .mutation(async ({ ctx, input }) => {
-      return createTodo({ ...input, createdBy: ctx.user.id })
-    }),
-})
-```
+---
 
-**Subscriptions** (`src/routers/todos/subscriptions.ts`):
-```typescript
-export const todosSubscriptions = router({
-  onUpdate: protectedProcedure
-    .subscription(async function* ({ ctx, signal }) {
-      // Initial data
-      yield { id: '0', type: 'sync', todos: await getTodos(ctx.user.id), timestamp: Date.now() }
+## Name
 
-      // Poll for updates
-      while (!signal?.aborted) {
-        await new Promise((resolve) => setTimeout(resolve, 3000))
-        yield { id: String(++eventId), type: 'update', todos: await getTodos(ctx.user.id), timestamp: Date.now() }
-      }
-    }),
-})
-```
+水 (Mizu) — Water. Chosen because:
+- Water adapts to any container (flexible deployments)
+- Water flows naturally (visual pipeline design)
+- Water is essential but often invisible (infrastructure should fade into the background)
+- It sounds cool and I like anime, sue me
 
-### Frontend Integration (`apps/web/src/integrations`)
+---
 
-**tRPC Clients**:
-- `http-client.ts` - HTTP with SSE support for subscriptions
-- `ws-client.ts` - WebSocket client for real-time subscriptions
-- `react.ts` - TanStack Query + tRPC context
+## License
 
-**Usage in Components**:
-```typescript
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { httpTrpcClient, useTRPC, wsTrpcClient } from '@/integrations/trpc'
+MIT — Do what you want, just don't blame me when things break.
 
-function TodosExample() {
-  const trpc = useTRPC()
-  const queryClient = useQueryClient()
+---
 
-  // Query
-  const { data: todos } = useQuery(trpc.todos.list.queryOptions())
-
-  // Mutation
-  const createMutation = useMutation(
-    trpc.todos.create.mutationOptions({
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: trpc.todos.list.queryKey() })
-      },
-    }),
-  )
-
-  // SSE Subscription
-  React.useEffect(() => {
-    const unsubscribe = httpTrpcClient.todos.onUpdate.subscribe(undefined, {
-      onData: (data) => {
-        queryClient.setQueryData(trpc.todos.list.queryKey(), data.todos)
-      },
-    })
-    return () => unsubscribe.unsubscribe()
-  }, [])
-}
-```
-
-## 🔧 Key Patterns
-
-### 1. drizzle-zod for Schema Generation
-Instead of manually defining Zod schemas, use `drizzle-zod` to automatically generate them from your Drizzle tables:
-- `createInsertSchema()` - For create operations
-- `createUpdateSchema()` - For update operations
-- `createSelectSchema()` - For reading/selecting data
-
-### 2. Folder-per-Entity in Service Layer
-Each entity has its own folder with individual files for each operation:
-```
-service/src/
-├── queries/
-│   └── todos/
-│       ├── get-todo.ts
-│       ├── get-todos.ts
-│       └── index.ts
-└── mutations/
-    └── todos/
-        ├── create-todo.ts
-        ├── update-todo.ts
-        ├── delete-todo.ts
-        └── index.ts
-```
-
-### 3. Merged tRPC Routers
-Routers are split by concern and merged:
-```typescript
-export const todosRouter = mergeRouters(todosQueries, todosMutations, todosSubscriptions)
-```
-
-### 4. Dual tRPC Clients
-- **HTTP Client**: For queries/mutations + SSE subscriptions
-- **WebSocket Client**: For real-time WebSocket subscriptions
-
-## 📦 Dependencies
-
-Key packages added:
-- `@tanstack/react-query` - Data fetching and caching
-- `@trpc/tanstack-react-query` - tRPC + React Query integration
-- `@trpc/client` - tRPC client
-- `drizzle-zod` - Zod schema generation from Drizzle
-- `superjson` - Type-safe serialization
-
-## 🚧 Production Notes
-
-### Replace SSE Polling with Redis Pub/Sub
-For production, replace the polling-based subscription with Redis:
-```typescript
-// Use Redis Pub/Sub or PostgreSQL LISTEN/NOTIFY
-for await (const event of createRedisIterable(channel, signal)) {
-  yield event
-}
-```
-
-## 📝 License
-
-MIT
+<p align="center">
+  <sub>Built with 🍵 and questionable life choices.</sub>
+</p>

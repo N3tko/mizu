@@ -1,6 +1,27 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with Mizu.
+
+## Project Identity
+
+**Mizu** (水, "water") is a self-hosting platform for macOS home labs. Think Coolify, Railway, or Heroku — but running on Mac Minis and MacBooks.
+
+### Core Vision
+- **Visual-first**: Canvas/flowchart interface for designing deployments
+- **macOS-native**: Built specifically for Apple hardware home labs
+- **Delightful UX**: Simple things stay simple, complex things remain possible
+- **Local-first**: Your machine, your data, your rules
+
+### What We're Building
+A platform where developers can deploy and manage applications through drag-and-drop visual interfaces, eliminating YAML archaeology and Kubernetes complexity for home lab use cases.
+
+### Personality
+- Hobby project with heart — not enterprise software
+- Geek/anime-inspired without being cringe
+- Opinionated but escape hatches exist
+- Water flows naturally; so should deployments
+
+---
 
 ## Operating Principles
 
@@ -9,6 +30,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Leverage existing patterns**: Follow established project conventions before introducing new abstractions.
 - **Prove it works**: Validate with tests/build/lint. "Seems right" is not done.
 - **Be explicit about uncertainty**: If you cannot verify something, say so and propose the safest next step.
+- **UX matters**: This isn't enterprise software — if it's not delightful to use, it's not done.
+
+---
 
 ## Commands
 
@@ -39,6 +63,8 @@ bun run gen:app                       # Generate new TanStack app
 bun run gen:lib                       # Generate new library package
 ```
 
+---
+
 ## Architecture
 
 **Turborepo monorepo** using **Bun** as runtime and package manager.
@@ -46,11 +72,11 @@ bun run gen:lib                       # Generate new library package
 ### Package Structure
 
 ```
-apps/studio/                      # TanStack Start SSR app (React 19)
+apps/studio/                      # Mizu Studio - main web interface (TanStack Start)
 packages/
   studio/
     domain/                       # Drizzle schemas + drizzle-zod entities
-    repository/                   # Database layer (Drizzle ORM + postgres)
+    repository/                   # Database layer (Drizzle ORM + PostgreSQL)
     service/                      # Business logic (queries/mutations)
     trpc/                         # tRPC router definitions
   shared/
@@ -62,11 +88,16 @@ packages/
 
 ### Data Flow
 
-**Domain** (schemas) → **Repository** (DB access) → **Service** (business logic) → **tRPC** (API) → **Frontend** (React)
+```
+Domain (schemas) → Repository (DB) → Service (logic) → tRPC (API) → Frontend (React)
+```
 
 ### Key Patterns
 
-1. **drizzle-zod**: Auto-generate Zod schemas from Drizzle tables using `createInsertSchema()`, `createUpdateSchema()`, `createSelectSchema()`
+1. **drizzle-zod**: Auto-generate Zod schemas from Drizzle tables
+   ```typescript
+   createInsertSchema(), createUpdateSchema(), createSelectSchema()
+   ```
 
 2. **Folder-per-Entity in Service Layer**:
    ```
@@ -74,52 +105,76 @@ packages/
    service/src/mutations/todos/create-todo.ts
    ```
 
-3. **Merged tRPC Routers**: Split by concern (queries, mutations, subscriptions) then merge:
+3. **Merged tRPC Routers**: Split by concern, then merge:
    ```typescript
    export const todosRouter = mergeRouters(todosQueries, todosMutations, todosSubscriptions)
    ```
 
-4. **Dual tRPC Clients**: HTTP client for queries/mutations + SSE subscriptions, WebSocket client for real-time subscriptions
+4. **Dual tRPC Clients**: HTTP for queries/mutations, WebSocket for real-time
 
 ### Tech Stack
 
-- **Frontend**: React 19, TanStack Router, TanStack Query, tRPC Client, Tailwind CSS, Base UI, Tabler Icons
-- **Backend**: TanStack Start (SSR), tRPC Server, Drizzle ORM, PostgreSQL
-- **Auth**: better-auth
-- **AI**: Vercel AI SDK + Vercel AI Gateway
-- **Build**: Vite, Turborepo
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 19, TanStack Router, TanStack Query, tRPC Client, Tailwind CSS |
+| Backend | TanStack Start (SSR), tRPC Server, Drizzle ORM, PostgreSQL |
+| Auth | better-auth |
+| AI | Vercel AI SDK |
+| Build | Vite, Turborepo |
+| Runtime | Bun |
+
+---
+
+## Domain Concepts
+
+### Future Core Entities (planned)
+- **Project**: A collection of services and resources
+- **Service**: A deployable unit (container, app, database)
+- **Resource**: Infrastructure component (volume, network, secret)
+- **Deployment**: A versioned release of a service
+- **Flow**: Visual canvas representation of project topology
+
+### Canvas Editor (priority feature)
+The visual flowchart interface is central to Mizu's identity. When building UI:
+- Nodes represent services/resources
+- Edges represent connections/dependencies
+- Drag-and-drop for adding new components
+- Real-time status visualization
+
+---
 
 ## Workflow
 
 ### Plan Mode
-Enter plan mode for non-trivial tasks (3+ steps, multi-file changes, architectural decisions). Include verification steps in the plan. If new information invalidates the plan: stop, update, then continue.
+Enter plan mode for non-trivial tasks (3+ steps, multi-file changes, architectural decisions). Include verification steps. If new information invalidates the plan: stop, update, continue.
 
 ### Incremental Delivery
-- Prefer thin vertical slices over big-bang changes
-- Land work in small, verifiable increments: implement → test → verify → expand
-- Keep risky changes behind feature flags or safe defaults when feasible
+- Thin vertical slices over big-bang changes
+- Small, verifiable increments: implement → test → verify → expand
+- Feature flags for risky changes
 
 ### Verification Before "Done"
-Never mark complete without evidence:
 - `bun run check-types` passes
 - `bun run fmt-lint` passes
-- `bun run test` passes (or documented reason why not run)
+- `bun run test` passes (or documented reason)
 - Behavior matches acceptance criteria
+- **UX feels right** (not just functionally correct)
 
 ### Bug Fixing
 1. **Reproduce** reliably
-2. **Localize** the failure (UI, API, DB, build tooling)
+2. **Localize** the failure (UI, API, DB, build)
 3. **Reduce** to minimal failing case
 4. **Fix** root cause (not symptoms)
 5. **Guard** with regression coverage
 6. **Verify** end-to-end
 
+---
+
 ## Task Management
 
 Use `tasks/` directory for non-trivial work:
-
-- `tasks/todo.md` - Checklist with acceptance criteria, track progress, checkpoint notes
-- `tasks/lessons.md` - Capture failure modes and prevention rules after corrections
+- `tasks/todo.md` - Checklist with acceptance criteria
+- `tasks/lessons.md` - Failure modes and prevention rules
 
 ### Plan Template
 ```markdown
@@ -132,12 +187,54 @@ Use `tasks/` directory for non-trivial work:
 - [ ] Summarize changes + verification story
 ```
 
+---
+
+## Code Style
+
+| Rule | Value |
+|------|-------|
+| Formatter | Biome |
+| Indent | 2 spaces |
+| Line width | 100 chars |
+| Quotes | Single (double in JSX) |
+| Trailing commas | Yes |
+| Path alias | `@/*` → `./src/*` |
+
+**Type safety**: Avoid `any` and ignores. Encode invariants at boundaries.
+
+**Dependencies**: Don't add new deps unless existing stack cannot solve it cleanly.
+
+---
+
+## Commit Convention
+
+Format: `<emoji> <type>(<scope>?): <subject>`
+
+| Emoji | Type | Use |
+|-------|------|-----|
+| ✨ | feat | New feature |
+| 🐛 | fix | Bug fix |
+| 📝 | docs | Documentation |
+| 💄 | style | UI/styling |
+| ♻️ | refactor | Code restructure |
+| ⚡ | perf | Performance |
+| ✅ | test | Tests |
+| 🔧 | chore | Maintenance |
+| 🏗️ | build | Build system |
+| 👷 | ci | CI/CD |
+| 🔒 | security | Security |
+
+---
+
 ## Communication
 
-- Lead with outcome and impact, reference concrete artifacts (file paths, commands, errors)
-- Ask questions only when blocked: one targeted question with a recommended default
-- State assumptions if you inferred requirements
+- Lead with outcome and impact
+- Reference concrete artifacts (file paths, commands, errors)
+- Ask questions only when blocked: one targeted question with recommended default
+- State assumptions if inferred
 - Show verification story: what you ran and the outcome
+
+---
 
 ## Error Recovery
 
@@ -145,25 +242,12 @@ Use `tasks/` directory for non-trivial work:
 
 **Safe fallbacks**: Prefer "safe default + warning" over partial behavior. Degrade gracefully with actionable errors.
 
-## Code Style
-
-**Biome**: 2-space indent, 100-char width, single quotes (double in JSX), trailing commas
-
-**Path alias**: `@/*` → `./src/*` in apps
-
-**Type safety**: Avoid `any` and ignores. Encode invariants at boundaries.
-
-**Dependencies**: Don't add new deps unless existing stack cannot solve it cleanly.
-
-## Commit Convention
-
-Format: `<emoji> <type>(<scope>?): <subject>`
-
-Types: ✨ feat, 🐛 fix, 📝 docs, 💄 style, ♻️ refactor, ⚡ perf, ✅ test, 🔧 chore, 🏗️ build, 👷 ci, 🔒 security
+---
 
 ## Definition of Done
 
 - Behavior matches acceptance criteria
-- Verification passes (check-types/fmt-lint/test) or documented reason
+- Verification passes (check-types/fmt-lint/test)
 - Code follows existing conventions
-- Short verification story exists: what changed + how we know it works
+- UX is intuitive (for user-facing changes)
+- Short verification story exists
