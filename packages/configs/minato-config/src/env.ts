@@ -1,9 +1,5 @@
 import { type MinatoConfig, MinatoConfigSchema } from '@mizu/minato-domain'
 
-const isEnabled = (args: (string | undefined)[]): boolean => {
-  return args.every((arg) => arg !== undefined && arg !== '')
-}
-
 const minatoConfig: MinatoConfig = {
   app: {
     dev: process.env.NODE_ENV !== 'production',
@@ -21,26 +17,11 @@ const minatoConfig: MinatoConfig = {
   auth: {
     secret: process.env.AUTH_SECRET,
     emailAndPassword: {
-      enabled: false,
+      enabled: true,
+      minPasswordLength: 8,
+      maxPasswordLength: 128,
     },
     trustedOrigins: process.env.TRUSTED_ORIGINS?.split(',') ?? [],
-    socialProviders: {
-      github: {
-        enabled: isEnabled([process.env.GITHUB_CLIENT_ID, process.env.GITHUB_CLIENT_SECRET]),
-        clientId: process.env.GITHUB_CLIENT_ID ?? '',
-        clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
-      },
-      google: {
-        enabled: isEnabled([process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET]),
-        clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
-      },
-      discord: {
-        enabled: isEnabled([process.env.DISCORD_CLIENT_ID, process.env.DISCORD_CLIENT_SECRET]),
-        clientId: process.env.DISCORD_CLIENT_ID ?? '',
-        clientSecret: process.env.DISCORD_CLIENT_SECRET ?? '',
-      },
-    },
   },
 }
 

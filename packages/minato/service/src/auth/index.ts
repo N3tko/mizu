@@ -3,7 +3,7 @@ import { account, jwks, session, user, verification } from '@mizu/minato-domain'
 import { db } from '@mizu/minato-repository'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { jwt, lastLoginMethod, magicLink } from 'better-auth/plugins'
+import { jwt } from 'better-auth/plugins'
 
 export const auth = betterAuth({
   appName: 'Minato',
@@ -22,12 +22,11 @@ export const auth = betterAuth({
   advanced: {
     cookiePrefix: 'minato',
   },
-  account: {
-    encryptOAuthTokens: true,
-    accountLinking: {
-      enabled: true,
-      trustedProviders: ['google', 'github', 'discord'],
-    },
+  emailAndPassword: {
+    enabled: minatoEnvConfig.auth.emailAndPassword.enabled,
+    minPasswordLength: minatoEnvConfig.auth.emailAndPassword.minPasswordLength,
+    maxPasswordLength: minatoEnvConfig.auth.emailAndPassword.maxPasswordLength,
+    requireEmailVerification: false,
   },
   plugins: [
     jwt({
@@ -35,13 +34,7 @@ export const auth = betterAuth({
         expirationTime: '1d',
       },
     }),
-    magicLink({
-      expiresIn: 60 * 10, // 10 minutes
-      sendMagicLink: async ({ email, url }) => {
-        console.log(`\n✨ Magic Link for ${email}:\n${url}\n`)
-      },
-    }),
-    lastLoginMethod(),
   ],
-  ...minatoEnvConfig.auth,
+  trustedOrigins: minatoEnvConfig.auth.trustedOrigins,
+  secret: minatoEnvConfig.auth.secret,
 })
