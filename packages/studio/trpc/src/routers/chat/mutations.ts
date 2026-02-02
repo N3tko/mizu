@@ -1,4 +1,4 @@
-import { chatEvents, createChatMessage } from '@temp-repo/studio-service'
+import { chatEvents, createChatMessage } from '@mizu/studio-service'
 import { z } from 'zod'
 import { protectedProcedure, router } from '../../init'
 

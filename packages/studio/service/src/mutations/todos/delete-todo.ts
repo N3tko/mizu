@@ -1,5 +1,5 @@
-import { type Todo, todoTable } from '@temp-repo/studio-domain'
-import { db } from '@temp-repo/studio-repository'
+import { type Todo, todoTable } from '@mizu/studio-domain'
+import { db } from '@mizu/studio-repository'
 import { eq } from 'drizzle-orm'
 
 export const deleteTodo = async (todoId: string): Promise<Todo | undefined> => {

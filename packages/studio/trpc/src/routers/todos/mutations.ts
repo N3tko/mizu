@@ -1,5 +1,5 @@
-import { TodoInsertSchema } from '@temp-repo/studio-domain'
-import { createTodo, deleteTodo, updateTodo } from '@temp-repo/studio-service'
+import { TodoInsertSchema } from '@mizu/studio-domain'
+import { createTodo, deleteTodo, updateTodo } from '@mizu/studio-service'
 import { z } from 'zod'
 import { publicProcedure, router } from '../../init'
 

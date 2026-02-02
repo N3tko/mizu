@@ -1,5 +1,5 @@
 {
-  "name": "@temp-repo/studio-repository",
+  "name": "@mizu/studio-repository",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -13,9 +13,9 @@
     "@types/bun": "^1.3.4"
   },
   "dependencies": {
-    "@temp-repo/typescript-config": "workspace:*",
-    "@temp-repo/studio-config": "workspace:*",
-    "@temp-repo/studio-domain": "workspace:*",
+    "@mizu/typescript-config": "workspace:*",
+    "@mizu/studio-config": "workspace:*",
+    "@mizu/studio-domain": "workspace:*",
     "drizzle-orm": "^0.44.6",
     "postgres": "^3.4.7",
     "zod": "^4.1.11"

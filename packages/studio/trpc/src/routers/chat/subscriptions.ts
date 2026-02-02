@@ -1,6 +1,6 @@
-import { createLogger } from '@temp-repo/logger'
-import type { ChatMessage } from '@temp-repo/studio-domain'
-import { chatEvents, getChatMessages } from '@temp-repo/studio-service'
+import { createLogger } from '@mizu/logger'
+import type { ChatMessage } from '@mizu/studio-domain'
+import { chatEvents, getChatMessages } from '@mizu/studio-service'
 import { publicProcedure, router } from '../../init'
 
 const logger = createLogger('chat:subscriptions')

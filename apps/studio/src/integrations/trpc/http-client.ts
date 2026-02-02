@@ -1,4 +1,4 @@
-import type { AppRouter } from '@temp-repo/studio-trpc'
+import type { AppRouter } from '@mizu/studio-trpc'
 import {
   createTRPCClient,
   httpBatchLink,

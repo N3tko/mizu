@@ -1,5 +1,5 @@
-import { createLogger } from '@temp-repo/logger'
-import { getTodos } from '@temp-repo/studio-service'
+import { createLogger } from '@mizu/logger'
+import { getTodos } from '@mizu/studio-service'
 import { z } from 'zod'
 import { publicProcedure, router } from '../../init'
 

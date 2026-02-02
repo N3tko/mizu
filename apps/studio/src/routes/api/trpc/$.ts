@@ -1,5 +1,5 @@
+import { appRouter, createContext } from '@mizu/studio-trpc'
 import { createFileRoute } from '@tanstack/react-router'
-import { appRouter, createContext } from '@temp-repo/studio-trpc'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 
 function handler({ request }: { request: Request }) {

@@ -1,5 +1,5 @@
-import { type Todo, type TodoUpdate, todoTable } from '@temp-repo/studio-domain'
-import { db } from '@temp-repo/studio-repository'
+import { type Todo, type TodoUpdate, todoTable } from '@mizu/studio-domain'
+import { db } from '@mizu/studio-repository'
 import { eq } from 'drizzle-orm'
 
 export const updateTodo = async (

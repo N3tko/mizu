@@ -1,5 +1,5 @@
+import type { ChatMessage } from '@mizu/studio-domain'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { ChatMessage } from '@temp-repo/studio-domain'
 import { type FormEvent, useEffect, useRef, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'

@@ -1,5 +1,5 @@
+import { auth } from '@mizu/studio-service'
 import { createFileRoute } from '@tanstack/react-router'
-import { auth } from '@temp-repo/studio-service'
 
 export const Route = createFileRoute('/api/auth/$')({
   server: {

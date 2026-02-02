@@ -1,5 +1,5 @@
 import { EventEmitter } from 'node:events'
-import type { ChatMessage } from '@temp-repo/studio-domain'
+import type { ChatMessage } from '@mizu/studio-domain'
 
 class ChatEventEmitter extends EventEmitter {
   emitMessage(message: ChatMessage) {

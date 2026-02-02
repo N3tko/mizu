@@ -1,4 +1,4 @@
-import { studioEnvConfig } from '@temp-repo/studio-config'
+import { studioEnvConfig } from '@mizu/studio-config'
 import { protectedProcedure, publicProcedure, router } from '../../init'
 
 export const authQueries = router({

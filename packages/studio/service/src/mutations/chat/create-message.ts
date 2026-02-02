@@ -1,9 +1,5 @@
-import {
-  type ChatMessage,
-  type ChatMessageInsert,
-  chatMessageTable,
-} from '@temp-repo/studio-domain'
-import { db } from '@temp-repo/studio-repository'
+import { type ChatMessage, type ChatMessageInsert, chatMessageTable } from '@mizu/studio-domain'
+import { db } from '@mizu/studio-repository'
 
 export const createChatMessage = async (
   data: ChatMessageInsert,

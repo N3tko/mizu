@@ -1,5 +1,5 @@
-import { type ChatMessage, chatMessageTable } from '@temp-repo/studio-domain'
-import { db } from '@temp-repo/studio-repository'
+import { type ChatMessage, chatMessageTable } from '@mizu/studio-domain'
+import { db } from '@mizu/studio-repository'
 import { desc } from 'drizzle-orm'
 
 export const getChatMessages = async (limit = 100): Promise<ChatMessage[]> => {

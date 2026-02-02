@@ -1,4 +1,4 @@
-# @temp-repo/cli
+# @mizu/cli
 
 Monorepo CLI for managing apps, databases, Docker, and development workflows.
 

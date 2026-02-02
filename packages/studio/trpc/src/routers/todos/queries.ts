@@ -1,4 +1,4 @@
-import { getTodo, getTodos } from '@temp-repo/studio-service'
+import { getTodo, getTodos } from '@mizu/studio-service'
 import { z } from 'zod'
 import { publicProcedure, router } from '../../init'
 

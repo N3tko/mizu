@@ -1,5 +1,5 @@
+import { logger } from '@mizu/logger'
 import { createMiddleware, createStart } from '@tanstack/react-start'
-import { logger } from '@temp-repo/logger'
 
 /**
  * ✧･ﾟ: *✧･ﾟ:* REQUEST LOGGER MIDDLEWARE *:･ﾟ✧*:･ﾟ✧

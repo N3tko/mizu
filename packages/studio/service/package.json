@@ -1,5 +1,5 @@
 {
-  "name": "@temp-repo/studio-service",
+  "name": "@mizu/studio-service",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
@@ -7,11 +7,11 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@temp-repo/studio-config": "workspace:*",
-    "@temp-repo/studio-domain": "workspace:*",
-    "@temp-repo/studio-repository": "workspace:*",
-    "@temp-repo/logger": "workspace:*",
-    "@temp-repo/typescript-config": "workspace:*",
+    "@mizu/studio-config": "workspace:*",
+    "@mizu/studio-domain": "workspace:*",
+    "@mizu/studio-repository": "workspace:*",
+    "@mizu/logger": "workspace:*",
+    "@mizu/typescript-config": "workspace:*",
     "@openrouter/ai-sdk-provider": "^1.4.1",
     "ai": "^5.0.0-canary.14",
     "better-auth": "^1.4.5",

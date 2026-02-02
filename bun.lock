@@ -20,6 +20,13 @@
       "dependencies": {
         "@base-ui/react": "^1.1.0",
         "@fontsource-variable/nunito-sans": "^5.2.7",
+        "@mizu/cli": "workspace:*",
+        "@mizu/logger": "workspace:*",
+        "@mizu/studio-config": "workspace:*",
+        "@mizu/studio-domain": "workspace:*",
+        "@mizu/studio-repository": "workspace:*",
+        "@mizu/studio-service": "workspace:*",
+        "@mizu/studio-trpc": "workspace:*",
         "@tabler/icons-react": "^3.36.1",
         "@tailwindcss/vite": "^4.0.6",
         "@tanstack/react-devtools": "^0.7.0",
@@ -29,13 +36,6 @@
         "@tanstack/react-router-ssr-query": "^1.131.7",
         "@tanstack/react-start": "^1.132.0",
         "@tanstack/router-plugin": "^1.132.0",
-        "@temp-repo/cli": "workspace:*",
-        "@temp-repo/logger": "workspace:*",
-        "@temp-repo/studio-config": "workspace:*",
-        "@temp-repo/studio-domain": "workspace:*",
-        "@temp-repo/studio-repository": "workspace:*",
-        "@temp-repo/studio-service": "workspace:*",
-        "@temp-repo/studio-trpc": "workspace:*",
         "@trpc/client": "^11.1.2",
         "@trpc/server": "^11.4.3",
         "@trpc/tanstack-react-query": "^11.1.2",
@@ -80,21 +80,21 @@
       },
     },
     "packages/configs/studio-config": {
-      "name": "@temp-repo/studio-config",
+      "name": "@mizu/studio-config",
       "version": "0.1.0",
       "dependencies": {
-        "@temp-repo/studio-domain": "workspace:*",
-        "@temp-repo/typescript-config": "workspace:*",
+        "@mizu/studio-domain": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
       },
     },
     "packages/shared/cli": {
-      "name": "@temp-repo/cli",
+      "name": "@mizu/cli",
       "version": "0.1.0",
       "bin": {
         "repo": "./src/index.ts",
       },
       "dependencies": {
-        "@temp-repo/typescript-config": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
         "glob": "^11.0.0",
       },
       "devDependencies": {
@@ -103,25 +103,25 @@
       },
     },
     "packages/shared/logger": {
-      "name": "@temp-repo/logger",
+      "name": "@mizu/logger",
       "version": "0.1.0",
       "dependencies": {
         "pino": "^9.6.0",
         "pino-pretty": "^13.0.0",
       },
       "devDependencies": {
-        "@temp-repo/typescript-config": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
         "typescript": "^5",
       },
     },
     "packages/shared/typescript-config": {
-      "name": "@temp-repo/typescript-config",
+      "name": "@mizu/typescript-config",
       "version": "0.0.0",
     },
     "packages/studio/domain": {
-      "name": "@temp-repo/studio-domain",
+      "name": "@mizu/studio-domain",
       "dependencies": {
-        "@temp-repo/typescript-config": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
         "drizzle-orm": "^0.44.6",
         "drizzle-zod": "^0.8.3",
         "zod": "^4.1.13",
@@ -131,11 +131,11 @@
       },
     },
     "packages/studio/repository": {
-      "name": "@temp-repo/studio-repository",
+      "name": "@mizu/studio-repository",
       "dependencies": {
-        "@temp-repo/studio-config": "workspace:*",
-        "@temp-repo/studio-domain": "workspace:*",
-        "@temp-repo/typescript-config": "workspace:*",
+        "@mizu/studio-config": "workspace:*",
+        "@mizu/studio-domain": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
         "drizzle-orm": "^0.44.6",
         "postgres": "^3.4.7",
         "zod": "^4.1.11",
@@ -146,14 +146,14 @@
       },
     },
     "packages/studio/service": {
-      "name": "@temp-repo/studio-service",
+      "name": "@mizu/studio-service",
       "dependencies": {
+        "@mizu/logger": "workspace:*",
+        "@mizu/studio-config": "workspace:*",
+        "@mizu/studio-domain": "workspace:*",
+        "@mizu/studio-repository": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
         "@openrouter/ai-sdk-provider": "^1.4.1",
-        "@temp-repo/logger": "workspace:*",
-        "@temp-repo/studio-config": "workspace:*",
-        "@temp-repo/studio-domain": "workspace:*",
-        "@temp-repo/studio-repository": "workspace:*",
-        "@temp-repo/typescript-config": "workspace:*",
         "ai": "^5.0.0-canary.14",
         "better-auth": "^1.4.5",
         "drizzle-orm": "^0.44.6",
@@ -161,14 +161,14 @@
       },
     },
     "packages/studio/trpc": {
-      "name": "@temp-repo/studio-trpc",
+      "name": "@mizu/studio-trpc",
       "dependencies": {
-        "@temp-repo/logger": "workspace:*",
-        "@temp-repo/studio-config": "workspace:*",
-        "@temp-repo/studio-domain": "workspace:*",
-        "@temp-repo/studio-repository": "workspace:*",
-        "@temp-repo/studio-service": "workspace:*",
-        "@temp-repo/typescript-config": "workspace:*",
+        "@mizu/logger": "workspace:*",
+        "@mizu/studio-config": "workspace:*",
+        "@mizu/studio-domain": "workspace:*",
+        "@mizu/studio-repository": "workspace:*",
+        "@mizu/studio-service": "workspace:*",
+        "@mizu/typescript-config": "workspace:*",
         "@trpc/server": "^11.1.2",
         "superjson": "^2.2.2",
         "zod": "^3.25.16",
@@ -472,6 +472,22 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
+    "@mizu/cli": ["@mizu/cli@workspace:packages/shared/cli"],
+
+    "@mizu/logger": ["@mizu/logger@workspace:packages/shared/logger"],
+
+    "@mizu/studio-config": ["@mizu/studio-config@workspace:packages/configs/studio-config"],
+
+    "@mizu/studio-domain": ["@mizu/studio-domain@workspace:packages/studio/domain"],
+
+    "@mizu/studio-repository": ["@mizu/studio-repository@workspace:packages/studio/repository"],
+
+    "@mizu/studio-service": ["@mizu/studio-service@workspace:packages/studio/service"],
+
+    "@mizu/studio-trpc": ["@mizu/studio-trpc@workspace:packages/studio/trpc"],
+
+    "@mizu/typescript-config": ["@mizu/typescript-config@workspace:packages/shared/typescript-config"],
+
     "@modelcontextprotocol/sdk": ["@modelcontextprotocol/sdk@1.25.1", "", { "dependencies": { "@hono/node-server": "^1.19.7", "ajv": "^8.17.1", "ajv-formats": "^3.0.1", "content-type": "^1.0.5", "cors": "^2.8.5", "cross-spawn": "^7.0.5", "eventsource": "^3.0.2", "eventsource-parser": "^3.0.0", "express": "^5.0.1", "express-rate-limit": "^7.5.0", "jose": "^6.1.1", "json-schema-typed": "^8.0.2", "pkce-challenge": "^5.0.0", "raw-body": "^3.0.0", "zod": "^3.25 || ^4.0", "zod-to-json-schema": "^3.25.0" }, "peerDependencies": { "@cfworker/json-schema": "^4.1.1" }, "optionalPeers": ["@cfworker/json-schema"] }, "sha512-yO28oVFFC7EBoiKdAn+VqRm+plcfv4v0xp6osG/VsCB0NlPZWi87ajbCZZ8f/RvOFLEu7//rSRmuZZ7lMoe3gQ=="],
 
     "@mswjs/interceptors": ["@mswjs/interceptors@0.40.0", "", { "dependencies": { "@open-draft/deferred-promise": "^2.2.0", "@open-draft/logger": "^0.3.0", "@open-draft/until": "^2.0.0", "is-node-process": "^1.2.0", "outvariant": "^1.4.3", "strict-event-emitter": "^0.5.1" } }, "sha512-EFd6cVbHsgLa6wa4RljGj6Wk75qoHxUSyc5asLyyPSyuhIcdS2Q3Phw6ImS1q+CkALthJRShiYfKANcQMuMqsQ=="],
@@ -707,22 +723,6 @@
     "@tanstack/store": ["@tanstack/store@0.8.0", "", {}, "sha512-Om+BO0YfMZe//X2z0uLF2j+75nQga6TpTJgLJQBiq85aOyZNIhkCgleNcud2KQg4k4v9Y9l+Uhru3qWMPGTOzQ=="],
 
     "@tanstack/virtual-file-routes": ["@tanstack/virtual-file-routes@1.141.0", "", {}, "sha512-CJrWtr6L9TVzEImm9S7dQINx+xJcYP/aDkIi6gnaWtIgbZs1pnzsE0yJc2noqXZ+yAOqLx3TBGpBEs9tS0P9/A=="],
-
-    "@temp-repo/cli": ["@temp-repo/cli@workspace:packages/shared/cli"],
-
-    "@temp-repo/logger": ["@temp-repo/logger@workspace:packages/shared/logger"],
-
-    "@temp-repo/studio-config": ["@temp-repo/studio-config@workspace:packages/configs/studio-config"],
-
-    "@temp-repo/studio-domain": ["@temp-repo/studio-domain@workspace:packages/studio/domain"],
-
-    "@temp-repo/studio-repository": ["@temp-repo/studio-repository@workspace:packages/studio/repository"],
-
-    "@temp-repo/studio-service": ["@temp-repo/studio-service@workspace:packages/studio/service"],
-
-    "@temp-repo/studio-trpc": ["@temp-repo/studio-trpc@workspace:packages/studio/trpc"],
-
-    "@temp-repo/typescript-config": ["@temp-repo/typescript-config@workspace:packages/shared/typescript-config"],
 
     "@testing-library/dom": ["@testing-library/dom@10.4.1", "", { "dependencies": { "@babel/code-frame": "^7.10.4", "@babel/runtime": "^7.12.5", "@types/aria-query": "^5.0.1", "aria-query": "5.3.0", "dom-accessibility-api": "^0.5.9", "lz-string": "^1.5.0", "picocolors": "1.1.1", "pretty-format": "^27.0.2" } }, "sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg=="],
 
@@ -2292,6 +2292,8 @@
 
     "@isaacs/cliui/wrap-ansi": ["wrap-ansi@8.1.0", "", { "dependencies": { "ansi-styles": "^6.1.0", "string-width": "^5.0.1", "strip-ansi": "^7.0.1" } }, "sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ=="],
 
+    "@mizu/studio-trpc/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
+
     "@modelcontextprotocol/sdk/ajv": ["ajv@8.17.1", "", { "dependencies": { "fast-deep-equal": "^3.1.3", "fast-uri": "^3.0.1", "json-schema-traverse": "^1.0.0", "require-from-string": "^2.0.2" } }, "sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g=="],
 
     "@modelcontextprotocol/sdk/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
@@ -2327,8 +2329,6 @@
     "@tanstack/start-plugin-core/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
 
     "@tanstack/start-server-core/seroval": ["seroval@1.4.2", "", {}, "sha512-N3HEHRCZYn3cQbsC4B5ldj9j+tHdf4JZoYPlcI4rRYu0Xy4qN8MQf1Z08EibzB0WpgRG5BGK08FTrmM66eSzKQ=="],
-
-    "@temp-repo/studio-trpc/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
 
     "@testing-library/dom/picocolors": ["picocolors@1.1.1", "", {}, "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="],
 

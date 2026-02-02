@@ -1,5 +1,5 @@
-import { type Todo, type TodoInsert, todoTable } from '@temp-repo/studio-domain'
-import { db } from '@temp-repo/studio-repository'
+import { type Todo, type TodoInsert, todoTable } from '@mizu/studio-domain'
+import { db } from '@mizu/studio-repository'
 
 export const createTodo = async (data: TodoInsert): Promise<Todo | undefined> => {
   return await db

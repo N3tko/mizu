@@ -1,5 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto'
-import { studioEnvConfig } from '@temp-repo/studio-config'
+import { studioEnvConfig } from '@mizu/studio-config'
 
 const MASTER_KEY = studioEnvConfig.app.encryptionKey
 const ALGORITHM = 'aes-256-gcm'
